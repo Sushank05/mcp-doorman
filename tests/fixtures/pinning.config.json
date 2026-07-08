@@ -1,0 +1,16 @@
+{
+  "servers": {
+    "demo": {
+      "command": "node",
+      "args": ["examples/demo-server.mjs"]
+    }
+  },
+  "pinning": {
+    "enabled": true,
+    "pinFile": "../../node_modules/.cache/doorman-e2e.pins.json",
+    "onNewTool": "pin",
+    "onChangedTool": "block"
+  },
+  "audit": { "enabled": false },
+  "logLevel": "silent"
+}

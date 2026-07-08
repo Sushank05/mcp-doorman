@@ -1,0 +1,32 @@
+name: Bug report
+description: Something in mcp-doorman doesn't work as documented
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ **Guard bypasses of hard guarantees (policy deny, pinning block, approval gate) are vulnerabilities — please use private vulnerability reporting instead (see SECURITY.md).**
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: Include the tool call / config that triggered it and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: config
+    attributes:
+      label: Config (redact your servers/secrets)
+      render: json
+  - type: input
+    id: version
+    attributes:
+      label: mcp-doorman version + Node version + OS
+      placeholder: "0.1.0, Node 22.12, macOS 15"
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant stderr / audit log lines
+      render: text

@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Runtime artifacts
+*.audit.jsonl
+*audit*.jsonl
+*.pins.json
+!tests/fixtures/**/*.pins.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# Coverage
+coverage/
+
+# Editors / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json

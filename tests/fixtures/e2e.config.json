@@ -1,0 +1,20 @@
+{
+  "servers": {
+    "demo": {
+      "command": "node",
+      "args": ["examples/demo-server.mjs"]
+    }
+  },
+  "policy": {
+    "defaultAction": "allow",
+    "rules": [
+      { "match": "demo__delete_everything", "action": "deny", "reason": "destructive tool" },
+      { "match": "demo__send_email", "action": "approve", "reason": "outbound communication" }
+    ]
+  },
+  "injection": { "action": "flag" },
+  "pinning": { "enabled": false },
+  "rateLimit": { "perMinute": 120, "perTool": { "demo__echo": 2 } },
+  "audit": { "enabled": false },
+  "logLevel": "silent"
+}

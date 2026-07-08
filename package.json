@@ -1,0 +1,59 @@
+{
+  "name": "mcp-doorman",
+  "version": "0.1.0",
+  "description": "Security gateway for Model Context Protocol servers: policy enforcement, secret redaction, prompt-injection screening, tool rug-pull detection, rate limiting, human approval gates, and audit logging — one drop-in proxy, zero infrastructure.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "bin": {
+    "mcp-doorman": "dist/cli.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "NOTICE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "demo": "node scripts/demo.mjs",
+    "prepublishOnly": "npm run build && npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YOUR_GITHUB_USERNAME/mcp-doorman.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YOUR_GITHUB_USERNAME/mcp-doorman/issues"
+  },
+  "homepage": "https://github.com/YOUR_GITHUB_USERNAME/mcp-doorman#readme",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "mcp-gateway",
+    "security",
+    "proxy",
+    "guardrails",
+    "prompt-injection",
+    "tool-poisoning",
+    "secrets",
+    "audit-log",
+    "ai-agents",
+    "llm-security"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.10"
+  }
+}

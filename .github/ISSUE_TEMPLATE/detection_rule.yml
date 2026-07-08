@@ -1,0 +1,32 @@
+name: Detection rule proposal
+description: Propose a new redaction rule or prompt-injection pattern
+labels: [detection-rule, good first issue]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Rule kind
+      options:
+        - Redaction (secret/PII format)
+        - Injection pattern (attack shape)
+    validations:
+      required: true
+  - type: textarea
+    id: catches
+    attributes:
+      label: What should it catch?
+      description: Example strings the rule must match. For injection patterns, link to the technique in the wild if you can.
+    validations:
+      required: true
+  - type: textarea
+    id: not-catches
+    attributes:
+      label: What must it NOT catch?
+      description: Nearby legitimate content (the false-positive test case). Required — see docs/detection-rules.md.
+    validations:
+      required: true
+  - type: textarea
+    id: regex
+    attributes:
+      label: Draft regex (optional)
+      render: text
