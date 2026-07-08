@@ -5,7 +5,7 @@ Thanks for helping make the MCP ecosystem safer. All contributions are welcome �
 ## Getting started
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/mcp-doorman
+git clone https://github.com/Sushank05/mcp-doorman
 cd mcp-doorman
 npm install
 npm test        # unit tests + a real stdio end-to-end suite
@@ -26,16 +26,20 @@ See [docs/detection-rules.md](docs/detection-rules.md) for the full guidelines, 
 
 ## Project map
 
-| Path | What lives there |
-|---|---|
-| `src/gateway.ts` | The guard pipeline — where list/call interception happens |
-| `src/upstream.ts` | MCP client connections to upstream servers |
-| `src/redact.ts`, `src/injection.ts` | Detection rules (start here!) |
-| `src/policy.ts`, `src/ratelimit.ts`, `src/pinning.ts` | Individual guards |
-| `src/config.ts` | Config schema (zod) and loading |
-| `src/audit.ts` | JSONL audit log |
-| `tests/gateway.e2e.test.ts` | Real client ↔ gateway ↔ server, no mocks |
-| `examples/demo-server.mjs` | The deliberately misbehaving upstream used by tests and the demo |
+
+| Path                                                  | What lives there                                                 |
+| ----------------------------------------------------- | ---------------------------------------------------------------- |
+| `src/gateway.ts`                                      | The guard pipeline — where list/call interception happens        |
+| `src/upstream.ts`                                     | MCP client connections to upstream servers                       |
+| `src/redact.ts`, `src/injection.ts`                   | Detection rules (start here!)                                    |
+| `src/policy.ts`, `src/ratelimit.ts`, `src/pinning.ts` | Individual guards                                                |
+| `src/config.ts`                                       | Config schema (zod) and loading                                  |
+| `src/audit.ts`                                        | JSONL audit log                                                  |
+| `tests/gateway.e2e.test.ts`                           | Real client ↔ gateway ↔ server, no mocks                         |
+| `examples/demo-server.mjs`                            | The deliberately misbehaving upstream used by tests and the demo |
+
+
+
 
 ## Pull request checklist
 
@@ -43,6 +47,8 @@ See [docs/detection-rules.md](docs/detection-rules.md) for the full guidelines, 
 - New behavior has tests. Detection rules have true-positive *and* false-positive tests.
 - User-facing changes are reflected in README.md.
 - Keep PRs focused — one guard/rule/fix per PR reviews much faster.
+
+
 
 ## Reporting security issues
 
@@ -55,3 +61,4 @@ New *attack techniques* the guards should catch (novel injection phrasings, bypa
 - TypeScript strict; small focused modules; every module has a header comment saying *why* it exists.
 - Logs go to **stderr** — stdout carries the MCP protocol. Never `console.log` in gateway code paths.
 - Fail safe: when a guard errors, prefer blocking over silently allowing.
+

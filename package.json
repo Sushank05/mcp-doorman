@@ -26,12 +26,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/YOUR_GITHUB_USERNAME/mcp-doorman.git"
+    "url": "git+https://github.com/Sushank05/mcp-doorman.git"
   },
   "bugs": {
-    "url": "https://github.com/YOUR_GITHUB_USERNAME/mcp-doorman/issues"
+    "url": "https://github.com/Sushank05/mcp-doorman/issues"
   },
-  "homepage": "https://github.com/YOUR_GITHUB_USERNAME/mcp-doorman#readme",
+  "homepage": "https://github.com/Sushank05/mcp-doorman#readme",
   "keywords": [
     "mcp",
     "model-context-protocol",

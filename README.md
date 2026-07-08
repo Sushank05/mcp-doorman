@@ -2,10 +2,10 @@
 
 **The security gateway for MCP servers — every tool call gets checked at the door.**
 
-[![CI](https://github.com/YOUR_GITHUB_USERNAME/mcp-doorman/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_GITHUB_USERNAME/mcp-doorman/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/mcp-doorman)](https://www.npmjs.com/package/mcp-doorman)
-[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
-[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[CI](https://github.com/YOUR_GITHUB_USERNAME/mcp-doorman/actions/workflows/ci.yml)
+[npm](https://www.npmjs.com/package/mcp-doorman)
+[License: Apache-2.0](LICENSE)
+[PRs welcome](CONTRIBUTING.md)
 
 `mcp-doorman` is a drop-in proxy that sits between your AI agent (Claude Desktop, Claude Code, Cursor, VS Code, any MCP client) and the MCP servers it uses. One command, zero infrastructure, and every `tools/list` and `tools/call` passes through a guard pipeline:
 
@@ -17,17 +17,21 @@
 - 🙋 **Human approval gates** — sensitive tools trigger an interactive approval prompt via [MCP elicitation](https://modelcontextprotocol.io/specification/draft/client/elicitation), right in your client
 - 🧾 **Audit log** — every call, denial, redaction, and flag lands in an append-only JSONL file
 
+
+
 ## Why this exists
 
 Everyone is one `npx some-random-mcp-server` away from handing an unvetted process their API keys and a direct line into their model's context window. The documented attack classes are real, not hypothetical:
 
-| Attack | How it works |
-|---|---|
-| **Tool poisoning** | Malicious instructions hidden in a tool's *description*, invisible in most client UIs |
-| **Rug pull** | Server presents innocent tools on day 1, swaps the definitions after you've approved them |
-| **Indirect prompt injection** | A webpage/issue/email fetched by a *legitimate* tool carries instructions aimed at the model |
-| **Secret exfiltration** | A leaked credential in one tool result + one injected instruction = your key on someone else's server |
-| **Runaway loops** | A confused or hijacked agent mass-deletes, mass-mails, mass-scrapes |
+
+| Attack                        | How it works                                                                                          |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------- |
+| **Tool poisoning**            | Malicious instructions hidden in a tool's *description*, invisible in most client UIs                 |
+| **Rug pull**                  | Server presents innocent tools on day 1, swaps the definitions after you've approved them             |
+| **Indirect prompt injection** | A webpage/issue/email fetched by a *legitimate* tool carries instructions aimed at the model          |
+| **Secret exfiltration**       | A leaked credential in one tool result + one injected instruction = your key on someone else's server |
+| **Runaway loops**             | A confused or hijacked agent mass-deletes, mass-mails, mass-scrapes                                   |
+
 
 Enterprise MCP gateways exist for platform teams with Kubernetes clusters. **Nothing lightweight guards the individual developer's laptop — the place where 99% of MCP servers actually run.** That's the gap this project fills.
 
@@ -69,10 +73,12 @@ Tools show up namespaced as `github__create_issue`, `filesystem__read_file`, etc
 
 > **Windows note:** if a server entry uses `npx` directly, spawn it through cmd: `"command": "cmd", "args": ["/c", "npx", "-y", "..."]`.
 
+
+
 ## See it work
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/mcp-doorman && cd mcp-doorman
+git clone https://github.com/Sushank05/mcp-doorman && cd mcp-doorman
 npm install
 npm run demo
 ```
@@ -92,6 +98,8 @@ flowchart LR
     D -- stdio --> S2[filesystem server]
     D -- streamable HTTP --> S3[remote server]
 ```
+
+
 
 The gateway is an MCP **server** toward your client and an MCP **client** toward every upstream (stdio child processes or streamable-HTTP endpoints), aggregating them behind one connection. It is built on the official [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk).
 
@@ -153,11 +161,15 @@ Pin state and the audit log default to `<config-name>.pins.json` / `<config-name
 
 ### CLI
 
-| Command | What it does |
-|---|---|
-| `mcp-doorman run --config <path>` | Start the gateway over stdio (default command) |
+
+| Command                           | What it does                                                            |
+| --------------------------------- | ----------------------------------------------------------------------- |
+| `mcp-doorman run --config <path>` | Start the gateway over stdio (default command)                          |
 | `mcp-doorman pin --config <path>` | Connect to all upstreams and pin (trust) their current tool definitions |
-| `mcp-doorman init` | Write a starter config with sensible defaults |
+| `mcp-doorman init`                | Write a starter config with sensible defaults                           |
+
+
+
 
 ## Honest limitations
 
@@ -168,6 +180,8 @@ Security tooling that oversells is worse than none. Read this part.
 - **This is not a sandbox.** Upstream servers still run as child processes with your user's privileges. Doorman guards the *protocol*; pair it with containers ([ToolHive](https://github.com/stacklok/toolhive)-style) to guard the *process*.
 - **TOFU trusts first sight.** Pinning detects *changes*, not tools that were malicious from day one — that's what the description scanner and your own review are for.
 - **Approval gates need elicitation.** Clients without elicitation support fall back to `approval.fallback` (deny by default).
+
+
 
 ## Roadmap — help wanted 🙌
 
@@ -180,7 +194,7 @@ Security tooling that oversells is worse than none. Read this part.
 - [ ] Web dashboard for audit visualization
 - [ ] Entropy-based generic secret detection
 
-Grab anything above, or start with a [`good first issue`](https://github.com/YOUR_GITHUB_USERNAME/mcp-doorman/labels/good%20first%20issue). New detection rules are the easiest contribution: one regex + two tests. See [CONTRIBUTING.md](CONTRIBUTING.md) and [docs/detection-rules.md](docs/detection-rules.md).
+Grab anything above, or start with a `[good first issue](https://github.com/YOUR_GITHUB_USERNAME/mcp-doorman/labels/good%20first%20issue)`. New detection rules are the easiest contribution: one regex + two tests. See [CONTRIBUTING.md](CONTRIBUTING.md) and [docs/detection-rules.md](docs/detection-rules.md).
 
 ## Development
 
@@ -190,6 +204,8 @@ npm test          # 69 tests: unit + full stdio e2e
 npm run build
 npm run demo      # watch the guards fire live
 ```
+
+
 
 ## License
 
